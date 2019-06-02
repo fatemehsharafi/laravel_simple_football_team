@@ -13,14 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::post('/register', 'AuthController@register');
+Route::post('/login', 'AuthController@login');
+Route::post('/logout', 'AuthController@logout');
+
 Route::get('teams', 'TeamController@index');
 Route::post('search/team', 'TeamController@search');
 Route::post('search/player', 'PlayerController@search');
 
 
+
 Route::group([
     'prefix' => 'admin',
-    'namespace' => 'Admin'
+    'namespace' => 'Admin',
+    'middleware' => 'auth:api',
 ],
     function () {
 
