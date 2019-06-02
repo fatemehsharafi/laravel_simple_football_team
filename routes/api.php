@@ -14,3 +14,26 @@ use Illuminate\Http\Request;
 */
 
 Route::get('teams', 'TeamController@index');
+
+
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin'
+],
+    function () {
+
+        Route::group([
+            'prefix' => 'team',
+        ],
+            function () {
+                Route::put('update/{id}', 'TeamController@update');
+
+            });
+
+        Route::group([
+            'prefix' => 'player',
+        ],
+            function () {
+                Route::put('update/{id}', 'PlayerController@update');
+            });
+    });

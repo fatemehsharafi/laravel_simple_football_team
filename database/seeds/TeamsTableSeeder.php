@@ -12,7 +12,7 @@ class TeamsTableSeeder extends Seeder
     public function run()
     {
         for ($i = 0; $i < 10; $i++) {
-            factory(\App\Teams::class, 200)
+            factory(\App\Teams::class, 10)
                 ->create()->each(function ($team) {
                     $team->players()->saveMany(factory(App\Players::class, 22)->make());
                 });
