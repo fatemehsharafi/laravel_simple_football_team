@@ -14,7 +14,8 @@ class PlayerController extends Controller
      */
     public function search(Request $request)
     {
-        $player = Players::where('first_name', $request->first_name)
+        $player = Players::with('team')
+            ->where('first_name', $request->first_name)
             ->orWhere('last_name', $request->last_name)->first();
 
         if (empty($player)) {
