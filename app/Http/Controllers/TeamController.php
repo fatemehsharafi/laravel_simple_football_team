@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         $limit = empty($request->limit) ? 10 : $request->limit;
@@ -18,6 +22,23 @@ class TeamController extends Controller
                 'teams' => $teams
             ],
             'message' => '',
+            'status' => 200,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function search(Request $request)
+    {
+        $team = Teams::where('name' , $request->name)->first();
+
+        return response()->json([
+            'result' => [
+                'teams' => $team
+            ],
+            'message' => 'result for your search',
             'status' => 200,
         ]);
     }

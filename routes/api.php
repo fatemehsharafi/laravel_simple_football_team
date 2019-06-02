@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 */
 
 Route::get('teams', 'TeamController@index');
+Route::post('search/team', 'TeamController@search');
+Route::post('search/player', 'PlayerController@search');
 
 
 Route::group([
@@ -27,6 +29,7 @@ Route::group([
         ],
             function () {
                 Route::put('update/{id}', 'TeamController@update');
+                Route::post('get/{id}', 'TeamController@getTeam');
 
             });
 

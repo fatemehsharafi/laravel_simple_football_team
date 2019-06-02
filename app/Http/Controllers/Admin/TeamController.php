@@ -37,4 +37,17 @@ class TeamController extends Controller
             ]);
         }
     }
+
+    public function getTeam($id)
+    {
+        $team = Teams::with('players')->find($id);
+
+        return response()->json([
+            'result' => [
+                'team' => $team,
+            ],
+            'message' => 'team with players',
+            'status' => 200,
+        ]);
+    }
 }
