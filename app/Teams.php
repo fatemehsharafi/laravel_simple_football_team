@@ -12,6 +12,11 @@ class Teams extends Model
         'name'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function players()
     {
         return $this->hasMany(Players::class , 'team_id' , 'id');
