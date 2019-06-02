@@ -15,7 +15,8 @@ class TeamController extends Controller
     {
         $limit = empty($request->limit) ? 10 : $request->limit;
         $page = empty($request->page) ? 0 : $request->page;
-        $teams = Teams::with('players')->take($limit)->skip($page)->get();
+
+        $teams = Teams::with('players')->take($limit)->skip($page*$limit)->get();
 
         return response()->json([
             'result' => [
